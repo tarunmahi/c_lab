@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
+import Register from '../components/Register';
 
 const API_URL='http://3.81.146.185:3000/api'
 // Create Auth Context
