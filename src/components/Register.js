@@ -7,7 +7,6 @@ const Register = () => {
     email: '',
     password: '',
     role: 'User',
-    number:''
   });
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,12 +35,7 @@ const Register = () => {
           value={userData.password}
           onChange={(e) => setUserData({ ...userData, password: e.target.value })}
         />
-         <input   type="text"
-          placeholder="Phone Number"
-          value={userData.phone}
-          onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
-          required
-        />
+         
         <select value={userData.role} onChange={(e) => setUserData({ ...userData, role: e.target.value })}>
           <option value="User">User</option>
           <option value="Root">Root</option>

@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import Register from '../components/Register';
 
-const API_URL='http://3.81.146.185:3000/api'
+const API_URL=process.env.API_URL;
 // Create Auth Context
+const API='http://3.81.146.185:3000/api'
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const res = await axios.post(`${API_URL}/login`, credentials);
+      const res = await axios.post(`${API}/login`, credentials);
       const { token, user } = res.data;
       localStorage.setItem('token', token);  // Store token
       setAuth(user);  // Set user data
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       console.log(userData);
-      await axios.post(`${API_URL}/register/`, userData);
+      await axios.post(`${API}/register/`, userData);
     } catch (err) {
       console.error(err);
     }
