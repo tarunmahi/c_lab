@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import '../styles/login.css'
+
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -16,7 +18,7 @@ const Login = () => {
     navigate('/register')
    };
   return (
-    <div>
+    <div className='container'>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input

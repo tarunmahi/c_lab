@@ -4,15 +4,15 @@ const bcrypt = require('bcryptjs');
 const firebaseAdmin = require('firebase-admin');
 
 // Initialize Firebase Admin SDK
-const serviceAccount = require('./key.json'); // Replace with your Firebase service account key
+const serviceAccount = require('./key.json');
 firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: "https://fir-apk-e5d86-default-rtdb.firebaseio.com/"  // Replace with your Firebase Realtime Database URL
+  databaseURL: "https://fir-apk-e5d86-default-rtdb.firebaseio.com/"
 });
 
 const app = express();
-const db = firebaseAdmin.database(); // Access Firebase Realtime Database
-const auth = firebaseAdmin.auth(); // Firebase Authentication
+const db = firebaseAdmin.database();
+const auth = firebaseAdmin.auth();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -20,10 +20,10 @@ app.use(express.json());
 
 // Register user using Firebase Auth
 app.post('/api/register', async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password, role, age, gender, phone } = req.body;
 
   try {
-    // Firebase creates the user and authenticates
+    // Firebase creates the user
     const userRecord = await auth.createUser({
       email,
       password,
@@ -38,9 +38,12 @@ app.post('/api/register', async (req, res) => {
     await userRef.set({
       email,
       role,
-      password: hashedPassword, // Storing hashed password
+      age,
+      gender,
+      phone,
+      password: hashedPassword, // Store hashed password
     });
-    console.alert("registered succesfully");
+
     res.status(200).send('User registered successfully');
   } catch (error) {
     res.status(400).send('Error in registration: ' + error.message);

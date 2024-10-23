@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
+import '../styles/dashboard.css'
 const Dashboard = () => {
   const { auth, logout } = useContext(AuthContext);
   const navigate = useNavigate();

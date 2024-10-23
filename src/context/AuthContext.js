@@ -1,9 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL=process.env.API_URL;
 // Create Auth Context
-const API='http://3.81.146.185:3000/api'
+const API='http://3.87.252.240:3000/api'
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -38,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       // Fetch user data based on token
-      axios.get(`${API_URL}/profile`, {
+      axios.get(`${API}/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
